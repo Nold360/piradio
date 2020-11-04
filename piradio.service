@@ -1,0 +1,17 @@
+[Unit]
+Description=PiRadio
+After=mpd.service
+
+[Service]
+Type=exec
+User=pi
+Group=pi
+WorkingDirectory=/home/pi/piradio
+PIDFile=/run/piradio.pid
+ExecStartPre=+/home/pi/piradio/setupdate.sh
+ExecStart=/home/pi/piradio/piradio.py
+RestartSec=1
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
