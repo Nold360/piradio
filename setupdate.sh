@@ -23,8 +23,8 @@ if ! [ -L /etc/systemd/system/piradio.service ] ; then
   ln -s $(pwd)/piradio.service /etc/systemd/system/piradio.service
 fi
 
-echo "Restarting Services..."
-systemctl daemon-reload
-systemctl restart mpd
+#echo "Restarting Services..."
+#systemctl daemon-reload
+#systemctl restart mpd
 
 exit 0
