@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import time
-import RPi.GPIO as GPIO
 import musicpd
 from sys import exit
 #import sys
@@ -21,7 +20,12 @@ class MPC:
 
     def next(self, channel=0, reverse=False):
        # get all playlist names
-       pl = self.list()
+       try: 
+           pl = self.list()
+           if not pl:
+              return False
+       except:
+           return False
 
        if not self.current_playlist:
            self.load(pl[0])
@@ -52,8 +56,10 @@ class MPC:
          return None
 
     def is_playing(self):
-        if 'play' in self.state():
-           return True
+        try:
+            if 'play' in self.state():
+               return True
+        except: pass   
         return False
     
     def start_stop(self, channel=0):
@@ -71,11 +77,14 @@ class MPC:
         return self.client.stop()
 
     def load(self, playlist):
-        self.client.clear()
-        self.client.load(playlist)
-        print("Loading: " + playlist)
-        self.current_playlist = playlist
-        return self.play()
+        try: 
+            self.client.clear()
+            self.client.load(playlist)
+            print("Loading: " + playlist)
+            self.current_playlist = playlist
+            return self.play()
+        except:
+            return False
 
     def list(self):
         return [d['playlist'] for d in self.client.listplaylists()]
