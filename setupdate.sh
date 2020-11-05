@@ -14,13 +14,13 @@ fi
 # Link mpd.conf
 if ! [ -L /etc/mpd.conf ] ; then
   rm -f /etc/mpd.conf
-  ln -s $(pwd)/mpd.conf /etc/mpd.conf
+  ln -s $(pwd)/conf/mpd.conf /etc/mpd.conf
 fi
 
 # Link piradio service
 if ! [ -L /etc/systemd/system/piradio.service ] ; then
   rm -f /etc/systemd/system/piradio.service
-  ln -s $(pwd)/piradio.service /etc/systemd/system/piradio.service
+  ln -s $(pwd)/conf/piradio.service /etc/systemd/system/piradio.service
 fi
 
 #echo "Restarting Services..."

@@ -36,3 +36,13 @@ This script will setup & update everything from git:
 ``` bash
 sudo ./setupdate.sh
 ```
+
+
+### ALSA Equalizer
+The `mpd.conf` referes to a alsaequal Equalizer device. Use `conf/asound.conf` as `/etc/asource.conf`.
+
+#### Installation
+`sudo apt install libasound2-plugin-equal`
+
+#### Configuration
+`sudo -u mpd alsamixer -D equal`
