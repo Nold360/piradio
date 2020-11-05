@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
-import time
+# Handles MPD Communication
 import musicpd
-from sys import exit
-#import sys
 
 class MPC:
     client = None

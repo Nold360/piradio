@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
+# This handles the LCD communication, thx to some guy on the inet
 import time
 import RPi.GPIO as GPIO
-import musicpd
-from sys import exit
-#import sys
 
 class LCD:
     # Define GPIO to LCD mapping

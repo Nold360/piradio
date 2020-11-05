@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+# PiRadio - Raspberry Pi Internet Radio
+# Hardware: RPi Zero W, USB-Soundcard, 20x4 LCD & 3 Push Buttons
+# Software: Raspbian buster, MPD & Python
+#
 import time
 import RPi.GPIO as GPIO
 from sys import exit
@@ -7,6 +11,7 @@ from sys import exit
 from lcd import LCD
 from mpc import MPC
 
+# Hardware Buttons on RPi GPIO
 BT_RIGHT = 16
 BT_LEFT  = 21
 BT_ENTER = 20
@@ -16,6 +21,7 @@ def main():
     mpc = MPC()
     lcd = LCD()
     
+    # Setup Prev, Enter and Next Buttons
     try:
       GPIO.setup(BT_RIGHT, GPIO.IN, pull_up_down=GPIO.PUD_UP)
       GPIO.setup(BT_LEFT, GPIO.IN, pull_up_down=GPIO.PUD_UP)
@@ -29,7 +35,7 @@ def main():
       GPIO.cleanup()
       exit(1)
 
-
+    # Play some tunes
     if not mpc.is_playing():
       mpc.next()
 
@@ -73,5 +79,6 @@ def main():
             print(e)
             lcd.println("Goodbye!", LCD.LINE_1, 2)
             GPIO.cleanup()
+            exit(1)
 
 main()
